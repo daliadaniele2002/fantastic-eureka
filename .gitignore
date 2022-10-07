@@ -1,0 +1,7 @@
+*.bak
+*.idea
+*.iml
+*.class
+*target
+*out
+*program_folder

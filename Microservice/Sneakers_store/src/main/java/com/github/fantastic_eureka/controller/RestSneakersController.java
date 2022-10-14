@@ -3,20 +3,20 @@ package com.github.fantastic_eureka.controller;
 import com.github.fantastic_eureka.dao.IGenericDao;
 import com.github.fantastic_eureka.model.Sneakers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("sneakers")
 public class RestSneakersController implements SneakersController {
     private IGenericDao<Sneakers> dao;
 
     @Autowired
     public void setDao(IGenericDao<Sneakers> dao) {
-        System.out.println("AYE");
         this.dao = dao;
         dao.setClazz(Sneakers.class);
     }
@@ -26,12 +26,13 @@ public class RestSneakersController implements SneakersController {
     }
 
     @Override
-    @GetMapping("sneakers/findOne")
-    public Sneakers getSneakers(long id) {
-        return dao.findOne(1);
+    @GetMapping("/findOne")
+    public Sneakers getSneakers(@RequestParam long id) {
+        return dao.findOne(id);
     }
 
     @Override
+    @GetMapping("/findAll")
     public List<Sneakers> getAllSneakers() {
         return dao.findAll();
     }

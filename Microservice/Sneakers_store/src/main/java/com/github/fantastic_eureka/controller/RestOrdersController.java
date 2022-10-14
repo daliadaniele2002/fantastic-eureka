@@ -3,11 +3,15 @@ package com.github.fantastic_eureka.controller;
 import com.github.fantastic_eureka.dao.IGenericDao;
 import com.github.fantastic_eureka.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("orders")
 public class RestOrdersController implements OrdersController {
     private IGenericDao<Order> dao;
 
@@ -18,11 +22,13 @@ public class RestOrdersController implements OrdersController {
     }
 
     @Override
-    public Order getOrder(long id) {
+    @GetMapping("/findOne")
+    public Order getOrder(@RequestParam long id) {
         return dao.findOne(id);
     }
 
     @Override
+    @GetMapping("/findAll")
     public List<Order> getAllOrders() {
         return dao.findAll();
     }

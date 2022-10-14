@@ -1,5 +1,6 @@
 package com.github.fantastic_eureka.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ public class Size implements Serializable {
     private double eu_size;
     @Column(name = "us_size")
     private double us_size;
+    @JsonIgnore
     @ManyToMany(mappedBy = "sizes", fetch = FetchType.LAZY)
     private Set<Sneakers> sneakersSet = new HashSet<>();
 

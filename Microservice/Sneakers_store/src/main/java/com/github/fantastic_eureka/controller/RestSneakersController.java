@@ -3,10 +3,7 @@ package com.github.fantastic_eureka.controller;
 import com.github.fantastic_eureka.dao.IGenericDao;
 import com.github.fantastic_eureka.model.Sneakers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,24 +35,28 @@ public class RestSneakersController implements SneakersController {
     }
 
     @Override
-    public Sneakers addNewSneakers(Sneakers sneakers) {
+    @PostMapping("/addNew")
+    public Sneakers addNewSneakers(@RequestBody Sneakers sneakers) {
         dao.create(sneakers);
         return sneakers;
     }
 
     @Override
-    public Sneakers update(Sneakers sneakers) {
+    @PutMapping("/update")
+    public Sneakers update(@RequestBody Sneakers sneakers) {
         dao.update(sneakers);
         return sneakers;
     }
 
     @Override
-    public void delete(Sneakers sneakers) {
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody Sneakers sneakers) {
         dao.delete(sneakers);
     }
 
     @Override
-    public void deleteById(long id) {
+    @DeleteMapping("/deleteById")
+    public void deleteById(@RequestParam long id) {
         dao.deleteById(id);
     }
 }

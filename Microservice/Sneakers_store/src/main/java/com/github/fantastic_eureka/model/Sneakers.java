@@ -1,5 +1,6 @@
 package com.github.fantastic_eureka.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "sneakers")
 public class Sneakers implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "code", nullable = false, unique = true)

@@ -3,7 +3,6 @@ package com.github.fantastic_eureka.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,6 +10,8 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     private Class<T> clazz;
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private ITransactionController transactionController;
 
     public final void setClazz(final Class<T> clazz) {
         this.clazz = clazz;
@@ -25,21 +26,22 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     }
 
     public T create(final T entity) {
-        entityManager.persist(entity);
+        transactionController.executeInsideTransaction(em -> em.persist(entity), entityManager);
         return entity;
     }
 
     public T update(final T entity){
-        return entityManager.merge(entity);
+        transactionController.executeInsideTransaction(em -> em.merge(entity), entityManager);
+        return entity;
     }
 
     public void delete(final T entity){
-        entityManager.remove(entity);
+        transactionController.executeInsideTransaction(em -> em.remove(entity), entityManager);
     }
 
     public void deleteById(final long id){
         T entity = findOne(id);
-        entityManager.remove(entity);
+        transactionController.executeInsideTransaction(em -> em.remove(entity), entityManager);
     }
 
 }

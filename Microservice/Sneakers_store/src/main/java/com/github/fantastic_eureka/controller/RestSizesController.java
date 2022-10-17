@@ -3,10 +3,7 @@ package com.github.fantastic_eureka.controller;
 import com.github.fantastic_eureka.dao.IGenericDao;
 import com.github.fantastic_eureka.model.Size;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,24 +31,28 @@ public class RestSizesController implements SizesController {
     }
 
     @Override
-    public Size addNewSize(Size size) {
+    @PostMapping("/addNew")
+    public Size addNewSize(@RequestBody Size size) {
         dao.create(size);
         return size;
     }
 
     @Override
-    public Size update(Size size) {
+    @PutMapping("/update")
+    public Size update(@RequestBody Size size) {
         dao.update(size);
         return size;
     }
 
     @Override
-    public void delete(Size size) {
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody Size size) {
         dao.delete(size);
     }
 
     @Override
-    public void deleteById(long id) {
+    @DeleteMapping("/deleteById")
+    public void deleteById(@RequestParam long id) {
         dao.deleteById(id);
     }
 }

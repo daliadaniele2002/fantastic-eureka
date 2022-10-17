@@ -1,7 +1,6 @@
 package com.github.fantastic_eureka.controller;
 
 import com.github.fantastic_eureka.model.Order;
-import com.github.fantastic_eureka.model.Sneakers;
 
 import java.util.List;
 

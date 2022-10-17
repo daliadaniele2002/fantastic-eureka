@@ -3,10 +3,7 @@ package com.github.fantastic_eureka.controller;
 import com.github.fantastic_eureka.dao.IGenericDao;
 import com.github.fantastic_eureka.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,24 +31,27 @@ public class RestOrdersController implements OrdersController {
     }
 
     @Override
-    public Order addNewOrder(Order order) {
+    @PostMapping("/addNew")
+    public Order addNewOrder(@RequestBody Order order) {
         dao.create(order);
         return order;
     }
-
     @Override
-    public Order update(Order order) {
+    @PutMapping("/update")
+    public Order update(@RequestBody Order order) {
         dao.update(order);
         return order;
     }
 
     @Override
-    public void delete(Order order) {
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody Order order) {
         dao.delete(order);
     }
 
     @Override
-    public void deleteById(long id) {
+    @DeleteMapping("deleteById")
+    public void deleteById(@RequestParam long id) {
         dao.deleteById(id);
     }
 }

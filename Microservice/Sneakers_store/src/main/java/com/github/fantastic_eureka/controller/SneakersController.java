@@ -1,7 +1,9 @@
 package com.github.fantastic_eureka.controller;
 
 import com.github.fantastic_eureka.model.Sneakers;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface SneakersController {
@@ -9,7 +11,7 @@ public interface SneakersController {
 
     List<Sneakers> getAllSneakers();
 
-    Sneakers addNewSneakers(final Sneakers sneakers);
+    Sneakers addNewSneakers(final String sneakersJson, MultipartFile file) throws IOException;
 
     Sneakers update(final Sneakers sneakers);
 

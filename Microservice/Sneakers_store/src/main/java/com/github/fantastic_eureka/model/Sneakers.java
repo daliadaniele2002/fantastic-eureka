@@ -1,6 +1,5 @@
 package com.github.fantastic_eureka.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,13 +24,12 @@ public class Sneakers implements Serializable {
     private String model;
     @Column(name = "price")
     private double price;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "size_to_sneakers",
-            joinColumns = {@JoinColumn(name = "sneakers_code")},
-            inverseJoinColumns = {@JoinColumn(name = "size_id")}
-    )
-    private Set<Size> sizes = new HashSet<>();
+    @OneToOne()
+    private Image image;
+    @Column(name = "sizes")
+    @ElementCollection
+    @OrderColumn(name = "index")
+    private Set<Double> sizes = new HashSet<>();
 
     @Override
     public String toString() {
@@ -40,7 +38,10 @@ public class Sneakers implements Serializable {
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +
+                ", image=" + image +
                 ", sizes=" + sizes +
                 '}';
     }
+
+
 }

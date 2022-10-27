@@ -21,7 +21,7 @@ public class Order implements Serializable {
     private String address;
     @Column(name = "customer_full_name")
     private String customerFullName;
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "sneakers_to_orders",
             joinColumns = {@JoinColumn(name = "order_id")},

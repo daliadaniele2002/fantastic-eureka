@@ -6,3 +6,6 @@
 *out
 *program_folder
 *test
+*.mvn
+*mvnw
+*.cmc

@@ -3,9 +3,11 @@ package com.github.fantastic_eureka.sneakers_store_ee.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.function.Consumer;
 
 
+@ApplicationScoped
 public class TransactionController implements ITransactionController {
     @Override
     public void executeInsideTransaction(Consumer<EntityManager> action, EntityManager entityManager) {

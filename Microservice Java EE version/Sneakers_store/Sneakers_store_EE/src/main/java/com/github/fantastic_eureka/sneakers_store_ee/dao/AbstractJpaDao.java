@@ -1,13 +1,17 @@
 package com.github.fantastic_eureka.sneakers_store_ee.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
 public abstract class AbstractJpaDao<T extends Serializable> {
     private Class<T> clazz;
+    @PersistenceContext
     private EntityManager entityManager;
+    @Inject
     private ITransactionController transactionController;
 
     public final void setClazz(final Class<T> clazz) {

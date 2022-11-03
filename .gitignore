@@ -4,7 +4,6 @@
 *.class
 *target
 *out
-*program_folder
 *test
 *.mvn
 *mvnw

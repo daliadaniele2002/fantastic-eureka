@@ -11,7 +11,7 @@ public interface OrdersController {
 
     Order addNewOrder(final Order order);
 
-    Order update();//TODO final Order order);
+    Order update(Order order);
 
     void delete(final Order order);
 

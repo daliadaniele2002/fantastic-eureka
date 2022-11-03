@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class AbstractJpaDao<T extends Serializable> {
     private Class<T> clazz;
-    @PersistenceContext
+    @PersistenceContext(name = "sneakers_store_EE")
     private EntityManager entityManager;
     @Inject
     private ITransactionController transactionController;

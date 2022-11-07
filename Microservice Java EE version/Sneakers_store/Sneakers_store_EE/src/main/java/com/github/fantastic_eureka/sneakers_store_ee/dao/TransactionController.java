@@ -1,9 +1,8 @@
 package com.github.fantastic_eureka.sneakers_store_ee.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.function.Consumer;
 
 

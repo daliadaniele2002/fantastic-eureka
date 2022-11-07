@@ -1,9 +1,8 @@
 package com.github.fantastic_eureka.sneakers_store_ee.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 

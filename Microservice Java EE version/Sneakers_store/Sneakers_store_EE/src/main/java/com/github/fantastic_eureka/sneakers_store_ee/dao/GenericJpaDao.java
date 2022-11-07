@@ -1,9 +1,9 @@
 package com.github.fantastic_eureka.sneakers_store_ee.dao;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 import java.io.Serializable;
 
-@RequestScoped
+@Dependent
 public class GenericJpaDao<T extends Serializable>
         extends AbstractJpaDao<T> implements IGenericDao<T>{
 }

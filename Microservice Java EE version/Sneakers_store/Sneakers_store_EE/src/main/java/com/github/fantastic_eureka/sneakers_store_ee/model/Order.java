@@ -1,6 +1,6 @@
 package com.github.fantastic_eureka.sneakers_store_ee.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 

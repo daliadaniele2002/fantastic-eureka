@@ -2,20 +2,30 @@ package com.github.fantastic_eureka.sneakers_store_ee.controller;
 
 import com.github.fantastic_eureka.sneakers_store_ee.dao.IGenericDao;
 import com.github.fantastic_eureka.sneakers_store_ee.model.Sneakers;
+import com.github.fantastic_eureka.sneakers_store_ee.utilities.SneakersBuilder;
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+import org.jboss.resteasy.plugins.providers.multipart.InputPart;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartInput;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @MultipartConfig
 @Path("/sneakers")
-public class RestSneakersController implements SneakersController{
+public class RestSneakersController implements SneakersController {
     private IGenericDao<Sneakers> dao;
 
     @Inject
-    public void setDao(IGenericDao<Sneakers> dao){
+    public void setDao(IGenericDao<Sneakers> dao) {
         dao.setClazz(Sneakers.class);
         this.dao = dao;
     }
@@ -39,11 +49,22 @@ public class RestSneakersController implements SneakersController{
     @Override
     @POST
     @Path("/addNew")
-    @Consumes(MediaType.APPLICATION_JSON)
+    //@Consumes("multipart/mixed")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public Sneakers addNewSneakers(String sneakersJson){//, HttpServletRequest request, HttpServletResponse response) {
+    public HttpServletResponse addNewSneakers(HttpServletRequest request, HttpServletResponse response) {
         //TODO
-        return null;
+        return response;
+    }
+
+    @POST
+    @Path("/addNew1")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String addNewSneakers1(@FormDataParam("file") InputStream uploadedInputStream,
+                                  @FormDataParam("file") FormDataContentDisposition fileDetail) throws IOException {
+
+        return "Ok";
     }
 
     @Override

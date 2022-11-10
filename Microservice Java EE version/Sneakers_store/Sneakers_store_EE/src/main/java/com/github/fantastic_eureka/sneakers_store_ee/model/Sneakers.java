@@ -26,7 +26,7 @@ public class Sneakers implements Serializable {
     @OneToOne()
     private Image image;
     @Column(name = "sizes")
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @OrderColumn(name = "index")
     private Set<Double> sizes = new HashSet<>();
 

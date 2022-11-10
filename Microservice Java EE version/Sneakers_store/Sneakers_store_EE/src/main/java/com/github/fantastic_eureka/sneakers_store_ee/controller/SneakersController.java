@@ -2,6 +2,8 @@ package com.github.fantastic_eureka.sneakers_store_ee.controller;
 
 import com.github.fantastic_eureka.sneakers_store_ee.model.Sneakers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface SneakersController {
@@ -9,7 +11,7 @@ public interface SneakersController {
 
     List<Sneakers> getAllSneakers();
 
-    Sneakers addNewSneakers(final String sneakersJson);//,TODO MultipartFile file) throws IOException;
+    HttpServletResponse addNewSneakers(final HttpServletRequest request, HttpServletResponse response);
 
     Sneakers update(final Sneakers sneakers);
 

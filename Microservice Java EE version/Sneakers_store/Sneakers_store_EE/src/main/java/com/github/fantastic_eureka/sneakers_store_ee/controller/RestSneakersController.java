@@ -2,12 +2,6 @@ package com.github.fantastic_eureka.sneakers_store_ee.controller;
 
 import com.github.fantastic_eureka.sneakers_store_ee.dao.IGenericDao;
 import com.github.fantastic_eureka.sneakers_store_ee.model.Sneakers;
-import com.github.fantastic_eureka.sneakers_store_ee.utilities.SneakersBuilder;
-import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataParam;
-import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
-import org.jboss.resteasy.plugins.providers.multipart.InputPart;
-import org.jboss.resteasy.plugins.providers.multipart.MultipartInput;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,10 +12,13 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
 @MultipartConfig
 @Path("/sneakers")
 public class RestSneakersController implements SneakersController {
+    public RestSneakersController() {
+        System.out.println("!!!!!!CREATED!!!!!!!");
+    }
+
     private IGenericDao<Sneakers> dao;
 
     @Inject
@@ -61,8 +58,8 @@ public class RestSneakersController implements SneakersController {
     @Path("/addNew1")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public String addNewSneakers1(@FormDataParam("file") InputStream uploadedInputStream,
-                                  @FormDataParam("file") FormDataContentDisposition fileDetail) throws IOException {
+    public String addNewSneakers1(/*@FormDataParam("file") InputStream uploadedInputStream,
+                                  @FormDataParam("file") FormDataContentDisposition fileDetail*/) throws IOException {
 
         return "Ok";
     }

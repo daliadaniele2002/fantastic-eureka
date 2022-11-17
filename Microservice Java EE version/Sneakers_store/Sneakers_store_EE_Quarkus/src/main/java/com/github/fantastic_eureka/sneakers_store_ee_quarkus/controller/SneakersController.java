@@ -1,7 +1,10 @@
 package com.github.fantastic_eureka.sneakers_store_ee_quarkus.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.fantastic_eureka.sneakers_store_ee_quarkus.model.Sneakers;
+import com.github.fantastic_eureka.sneakers_store_ee_quarkus.utilities.MultipartBody;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface SneakersController {
@@ -9,7 +12,7 @@ public interface SneakersController {
 
     List<Sneakers> getAllSneakers();
 
-    Sneakers addNewSneakers();
+    Sneakers addNewSneakers(MultipartBody body) throws IOException;
 
     Sneakers update(final Sneakers sneakers);
 

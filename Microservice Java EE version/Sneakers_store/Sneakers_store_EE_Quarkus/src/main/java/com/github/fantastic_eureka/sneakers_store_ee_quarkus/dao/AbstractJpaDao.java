@@ -1,5 +1,7 @@
 package com.github.fantastic_eureka.sneakers_store_ee_quarkus.dao;
 
+import com.github.fantastic_eureka.sneakers_store_ee_quarkus.config.EntityManagerFromFactory;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,7 +10,6 @@ import java.util.List;
 
 public abstract class AbstractJpaDao<T extends Serializable> {
     private Class<T> clazz;
-    //@PersistenceContext(name = "sneakers_store_EE")
     private EntityManager entityManager;
     private ITransactionController transactionController;
 
@@ -17,6 +18,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     }
 
     @Inject
+    @EntityManagerFromFactory
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
